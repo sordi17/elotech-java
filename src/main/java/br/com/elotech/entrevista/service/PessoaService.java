@@ -30,8 +30,8 @@ public class PessoaService {
     private ModelMapper modelMapper;
 
 
-    public Page<Pessoa> findPessoas(Pageable pageable) {
-        return repository.findAll(pageable);
+    public Page<Pessoa> findPessoas(Pageable pageable, String filtro) {
+        return repository.findAllWithFilter(pageable, filtro);
     }
 
     public PessoaDTO findPessoaById(Integer id) {

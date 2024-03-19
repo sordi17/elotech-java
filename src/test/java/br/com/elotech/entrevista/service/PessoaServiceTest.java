@@ -37,15 +37,16 @@ class PessoaServiceTest {
     @Test
     @DisplayName("deve retornar a busca das pessoas paginadas")
     public void deveBuscarTodasPessasPaginada() {
+        String filtro = "teste";
         Pageable pageable = carregaPageable();
 
         Page<Pessoa> page = mock(Page.class);
-        when(repository.findAll(pageable)).thenReturn(page);
+        when(repository.findAllWithFilter(pageable, filtro)).thenReturn(page);
         when(page.getSize()).thenReturn(5);
 
-        Page<Pessoa> result = service.findPessoas(pageable);
+        Page<Pessoa> result = service.findPessoas(pageable, filtro);
 
-        verify(repository).findAll(pageable);
+        verify(repository).findAllWithFilter(pageable, filtro);
         assertNotNull(result);
         assertEquals(5, result.getSize());
     }

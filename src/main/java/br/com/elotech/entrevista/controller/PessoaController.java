@@ -24,10 +24,8 @@ public class PessoaController {
     private PessoaService service;
 
     @GetMapping
-    @Operation(summary = "Retorna uma lista paginada de pessoas.")
-    @ApiResponse(responseCode = "200", description = "Resposta com a lista paginada de pessoas")
-    public ResponseEntity<?> getPessoas(@PageableDefault(size = 10) Pageable pageable) {
-        return ResponseEntity.status(HttpStatus.OK).body(service.findPessoas(pageable));
+    public ResponseEntity<?> getPessoas(@PageableDefault(size = 10) Pageable pageable, @RequestParam String filtro) {
+        return ResponseEntity.status(HttpStatus.OK).body(service.findPessoas(pageable, filtro));
     }
 
     @GetMapping(value = "/{id}")
