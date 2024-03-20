@@ -31,6 +31,10 @@ public class PessoaService {
 
 
     public Page<Pessoa> findPessoas(Pageable pageable, String filtro) {
+        if(filtro == "") {
+            return repository.findAll(pageable);
+        }
+
         return repository.findAllWithFilter(pageable, filtro);
     }
 

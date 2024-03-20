@@ -52,6 +52,23 @@ class PessoaServiceTest {
     }
 
     @Test
+    @DisplayName("deve retornar a busca das pessoas paginadas com filtro em branco")
+    public void deveBuscarTodasPessasPaginadaFiltroEmpty() {
+        String filtro = "";
+        Pageable pageable = carregaPageable();
+
+        Page<Pessoa> page = mock(Page.class);
+        when(repository.findAll(pageable)).thenReturn(page);
+        when(page.getSize()).thenReturn(5);
+
+        Page<Pessoa> result = service.findPessoas(pageable, filtro);
+
+        verify(repository).findAll(pageable);
+        assertNotNull(result);
+        assertEquals(5, result.getSize());
+    }
+
+    @Test
     @DisplayName("deve retornar a busca da pessoa por id")
     public void deveBuscarPessoaPorId() {
         List<Contato> contatos = new ArrayList<>();
