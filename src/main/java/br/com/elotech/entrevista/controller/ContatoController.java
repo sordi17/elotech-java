@@ -19,6 +19,7 @@ public class ContatoController {
     @Autowired
     private ContatoService service;
 
+    @CrossOrigin
     @GetMapping(value = "/pessoa/{pessoaId}")
     @Operation(summary = "Localiza uma lista de contatos a partir do id da pessoa")
     @ApiResponse(responseCode = "200", description = "Resposta com status 200 contendo uma lista de contatos")
@@ -26,6 +27,7 @@ public class ContatoController {
         return ResponseEntity.status(HttpStatus.OK).body(service.findContatosByPessoaId(pessoaId));
     }
 
+    @CrossOrigin
     @GetMapping(value = "/{id}")
     @Operation(summary = "Localiza um contato a partir do id")
     @ApiResponse(responseCode = "200", description = "Resposta com status 200 contendo um contato")
@@ -33,6 +35,7 @@ public class ContatoController {
         return ResponseEntity.status(HttpStatus.OK).body(service.findContatoById(id));
     }
 
+    @CrossOrigin
     @PostMapping
     @Operation(summary = "Cria um contato")
     @ApiResponse(responseCode = "200", description = "Resposta com status 201")
@@ -41,6 +44,7 @@ public class ContatoController {
         return ResponseEntity.status(HttpStatus.CREATED).body("Contato criado com sucesso");
     }
 
+    @CrossOrigin
     @PutMapping
     @Operation(summary = "Altera um contato")
     @ApiResponse(responseCode = "200", description = "Resposta com status 200")
@@ -49,6 +53,7 @@ public class ContatoController {
         return ResponseEntity.status(HttpStatus.OK).body("Contato alterado com sucesso");
     }
 
+    @CrossOrigin
     @DeleteMapping(value = "/{id}")
     @Operation(summary = "Deleta um contato")
     @ApiResponse(responseCode = "200", description = "Resposta com status 200")

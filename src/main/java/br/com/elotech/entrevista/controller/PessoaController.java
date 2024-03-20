@@ -23,11 +23,13 @@ public class PessoaController {
     @Autowired
     private PessoaService service;
 
+    @CrossOrigin
     @GetMapping
     public ResponseEntity<?> getPessoas(@PageableDefault(size = 10) Pageable pageable, @RequestParam String filtro) {
         return ResponseEntity.status(HttpStatus.OK).body(service.findPessoas(pageable, filtro));
     }
 
+    @CrossOrigin
     @GetMapping(value = "/{id}")
     @Operation(summary = "Retorna uma pessoa localizada pelo id.")
     @ApiResponse(responseCode = "200", description = "Resposta com pessoa localizada pelo id")
@@ -35,6 +37,7 @@ public class PessoaController {
         return ResponseEntity.status(HttpStatus.OK).body(service.findPessoaById(id));
     }
 
+    @CrossOrigin
     @PostMapping
     @Operation(summary = "Cria uma pessoa")
     @ApiResponse(responseCode = "200", description = "Resposta de sucesso ao criar uma pessoa")
@@ -43,6 +46,7 @@ public class PessoaController {
         return ResponseEntity.status(HttpStatus.CREATED).body("Pessoa criada com sucesso");
     }
 
+    @CrossOrigin
     @PutMapping
     @Operation(summary = "Altera os dados de uma pessoa")
     @ApiResponse(responseCode = "200", description = "Resposta de sucesso ao alterar uma pessoa")
@@ -51,6 +55,7 @@ public class PessoaController {
         return ResponseEntity.status(HttpStatus.OK).body("Pessoa alterada com sucesso");
     }
 
+    @CrossOrigin
     @DeleteMapping(value = "/{id}")
     @Operation(summary = "Deleta uma s dados de uma pessoa")
     @ApiResponse(responseCode = "200", description = "Resposta de sucesso ao deletar uma pessoa")
